@@ -1,0 +1,202 @@
+# ID, Xpath, CSS selector , Class name , name & link test
+# xpath //tagname[@attribute='value']  //button[@aria-label='Login button']
+# CSS tagname[attribute='value']   #id will be css  .classname will also css
+# link text will identify if HTML has anchor link
+# for radio button its click option
+# locator go parent to child
+
+                         select
+
+#select class is used to handle the dropdowns
+#ther are many method select - by index, by visible text, or value
+# auto selective tags
+
+
+                      find elements
+
+#find elements will store all the elements under that (more than find element)
+#it will return the list of items or elements
+# len(lista), loop through list if it matches with text india then click on india
+# for no in lista:
+#     if no.text == "india"
+#         no.click()
+#          break
+
+
+                            check boxes
+#get_attribute
+# for no in checkboxes:
+#     if checkbox.get_attribute("value") == option2:
+#         checkbox.click()
+#         break
+# assert is_seleced ()  will return true or false
+
+
+                          pop up
+
+# pop up are java codede and not the HTML. selenum interact with the HTML
+# There will no HTML property on the alerts
+ alert = driver.switch_to_alert   (this will object of alert)
+ alert.text     to grab the text from alert
+ alert.accept   to click on ok the alert (positive)
+# alert.dismiss to click on cancel (negative)
+# assert name in alert.text   (check the text validation on alert)
+
+                           implicity wait
+#Global wait
+#driver.implicitly_wait(5)  # Global timeout
+#wait until 5 seconds if object is not displayed (timeout if takes more than 5 seconds due to network etc), if element is displayed in 2 seconds it will proceed to next step save 3 seconds
+# time.sleep is hard wait, it will wait for given amount of time
+# it will applies to all elements  (if any element taking 15 seconds then 5 second will fail)
+
+                            Explicit Wait
+# sometime click on button application takes 10-15 seconds to upload or element is not appearig or bug
+# it override the explicit  wait
+# if you want appliy to specific element which taking 15 seconds then use expl
+wait = WebDriverWait(driver, 10) #untill up to what time 10 second this case /condition  u want to wait , it resumes once elements find, wait apply to specified element
+wait.until(expected_conditions.presence_of_all_elements_located(By.CSS_SELECTOR, ".promoInfo"))
+
+                     Frames
+ switch is used to switch between the frames
+ switch to default content (it will move to orignal page)
+
+
+                       Actions Classs
+#action = ActionChains(driver)
+#action chain module is used and driver is used as argument , created object driver you can perform the operations
+# click and hold (long click)
+# context click to make right click
+# Double click
+# Drag and drop (source, target)
+# move to element
+
+                  Parent and child windows
+#click on link and open new window
+# to operate on the new opened window (child window) we have to use switch to operate on different windows
+# use windows handle to collect the new opened windows (windows names)
+
+                  Use of java script
+Browser designed based on Java script, with JS you can do anything
+E.g Scroll down, we will use python code to execute the java script to perform scroll down
+after insecpt the page click on console and type window.scrollTo(0,600) # by changing the 600 to 400 or 300 will change scroll size of page
+
+driver.executescript will execute the script method.
+
+                   # screenshot
+driver.get_screenshot_as_file("screen.png") to capture the simple screenshot
+
+                      #Healess Mode
+Fast, runs on backend, chrome will not open at frontend.
+
+                        #sort
+listname.sort()   will sort the list
+
+                        #copy of list
+list = listold.copy(()
+                        End to End
+ start page to end page operation (E.g buy something and message displayed)
+
+                               ######  Framework     #########
+
+1-Pytest Unit testing Framework
+2-Understand Logging HTML reports
+3-Implement selenium Python Framework from scratch (Page Object Design Pattern)
+4-Data Driven Framework with Excel to selenium python tests
+ -Git Version Control
+
+# Any pytest file should start with test_ or end with _test
+#pytest method names should start with test ( each method is consider as  new test case) , each should have different name
+#Any code should be wrapped in method only
+# from command prompt go the path and run by py.test  or py.test -v
+
+To run the specific File Mention the File Name here
+C:\Users\XT23495\PycharmProjects\WebAutomation\seleniumProject\pytestDemo>py.test test_demo2.py -v
+
+To run the specific method test case from file
+# -k stands for method names execution, -s logs in out put  -v stands for more info metadata
+C:\Users\XT23495\PycharmProjects\WebAutomation\seleniumProject\pytestDemo>py.test -k CreditCard -v -s
+
+To Run specific tests
+ you can mark (tag) tests @pytest.mark.smoke and then run with -m
+
+C:\Users\XT23495\PycharmProjects\WebAutomation\seleniumProject\pytestDemo>py.test -m smoke -v -s
+
+To skip the test case
+@pytest.mark.skip
+
+No Status
+@pytest.mark.xfail
+
+
+fixtures are used as setup and tear down methods for test cases- conftest file to generalize fixture
+@pytest.fixture()
+setup method
+yield teardown method
+
+                    conftest file (before , tear down methods)
+file is created to define fixture for all the py test files (test_demo e.g file name)
+to be use across all test cases
+
+                     To Generate HTML report
+C:\Users\XT23495\PycharmProjects\WebAutomation\seleniumProject\pytestDemo>py.test --html=report.html
+
+                     Logging
+debug, Info, Warning, error, Critical  (to know why test case failed , what your script does, script should talk as per log, it should store in log file)
+
+Format of log info
+time stamp : kind of log (Critical) : Test case name : Error description
+
+import logging is used for logging (logging.FileHandler will get the path)
+HTML will print the logger info
+
+
+
+                      #selenium Framework#
+
+browser invocation should come from other location (fixture) not in test case. conftest file is good place to centralized fixture
+setup & teardown in fixture
+
+use self if you want to use class variable into themethod, BaseClass accessing the fixture & to be used in test  case
+
+command line arguments for choose the browser at run time
+
+https://docs.pytest.org/en/7.1.x/example/simple.html (copy in conftest file)
+
+                       Page object mechanisam
+locator can kept in POM file and actions (click e.g) called in test class
+pages 1-2-3 should be kept in POM (Home Page, Checkout, Confirm)
+
+
+                           Utility
+it will have all the functions which can be used in multiple test cases
+
+                       test
+e2e whole flow
+homepage will have all home page test case
+                            Jenkins
+Download jenkins java var file and run it via cmd promt java -jar jenkinfile -port
+
+add your proejct in there, project path
+
+you give the windows command path in jenkins to run the same (Execute shell) (cd location pytest)
+addd the env variable
+
+browser parameter can be added in the jenkins
+
+pytest has inbuilt feature to export as HTML, jenkins can read the XML and out of it will create JUNIT report
+( -v --junitxml ="result.xml")
+
+
+                       Excel Data
+Openpyxl
+
+static method,
+- no need to create obj, method static can be called with class name
+
+
+
+
+
+
+
+

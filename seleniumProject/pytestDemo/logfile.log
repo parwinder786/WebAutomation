@@ -1,0 +1,9 @@
+2022-09-13 17:43:32,070 :CRITICAL : pytestDemo.test_logging :Critical issue
+2022-09-13 17:46:34,759 :DEBUG : pytestDemo.test_logging :A debug statement is executed
+2022-09-13 17:46:34,759 :INFO : pytestDemo.test_logging :Information statement
+2022-09-13 17:46:34,759 :DEBUG : pytestDemo.test_logging :A debug statement is executed
+2022-09-13 17:46:34,759 :WARNING : pytestDemo.test_logging :Something is in warning mode
+2022-09-13 17:46:34,759 :ERROR : pytestDemo.test_logging :A Major error has happend
+2022-09-13 17:46:34,759 :CRITICAL : pytestDemo.test_logging :Critical issue
+2022-09-13 17:57:29,899 :INFO : test_editProfile :Rahul
+2022-09-13 17:57:29,899 :INFO : test_editProfile :rahulshettyacademy.com
