@@ -1009,12 +1009,295 @@ import re
 import unittest
 import pytest
 
-import exercis
+# import exercis
+#
+# class TestMain(unittest.TestCase):
+#     def test_do_stuff(self):
+#         num = 10
+#         result = exercis.do_stuff(num)
+#         self.assertEquals(result,15)
+#
+# unittest.main()
+#-----------------Image processing---------------
 
-class TestMain(unittest.TestCase):
-    def test_do_stuff(self):
-        num = 10
-        result = exercis.do_stuff(num)
-        self.assertEquals(result,15)
+# from PIL import Image, ImageFilter
+#
+# img = Image.open('D:\Drive D\Study\Python\WebAutomation\Development\image.png')
+#
+# #img = Image.open('./Development/image.png')
+#
+# print(img)
+# print(img.format)
+# print(img.size)
+# print(dir(img))
 
-unittest.main()
+#filter_img = img.filter(ImageFilter.BLUR) # it will apply the Blur filter
+# filter_img = img.filter(ImageFilter.SMOOTH) # it apply the smooth filter
+# filter_img = img.convert('L')  # it will convert into grey picture
+
+# rotate = filter_img.rotate(90) # it will rotate the file by 90 degree
+# rotate.save("modified.png", "png")
+
+# resize = filter_img.resize((500, 500)) # resize will re size the picture
+# resize.save("modified.png", "png")
+#
+# # instead of resize be we can use thhumbnail
+# img2 = Image.open('D:\Drive D\Study\Python\WebAutomation\Development\modified.png')
+# print(img2.size)
+
+# box = (100, 100, 400, 400)  # crop the picture on dimesions
+# region = filter_img.crop(box)
+# region.save("modified.png", "png")
+
+#filter_img.save("modified.png", "png") #jpg support filters
+#filter_img.show() # it will show the image
+
+# img.thumbnail((400, 400))  # to generate the thumbnail
+# img.save("modified.png", "png")
+# print(img.size) # thumbnail will decide the size adjusted size for image
+#--------------------PDF -----------------------
+
+# import pypdf
+#
+# with open('D:\Drive D\Study\Python\WebAutomation\Development\SuperVisaDeclaration_updated_Parwinder Singh.pdf', 'rb') as file:
+#     #print(file)
+#     reader = pypdf.PdfReader(file)
+#     print(len(reader.pages)) # to get total number of pages
+#     print(reader.pages[0]) # to get the page number content
+#
+#     page  = reader.pages[0]
+#     page.rotate(90)
+#     writer = pypdf.PdfWriter() #this will write the object in memory
+#     writer.add_page(page) # add the pages
+#     with open('new.pdf', 'wb') as new_file:
+#         writer.write(new_file)
+#
+#
+#     #print(reader.numPages)
+
+#-------------------Email--------------------------------
+
+# import smtplib  #allow to create smtp server, which used in send email
+# #smtp (simple mail transfer protocol) server used in email sending
+# from email.message import EmailMessage
+# from string import Template  #substitue variable inside text
+#
+# from pathlib import Path # similar to os.path
+#
+# html = Template(Path('index.html').read_text()) #wrap in template object
+#
+# print(html)
+#
+# email  = EmailMessage()
+#
+# email['from'] = 'armanndhillon@gmail.com'
+# email['to'] = 'parwinderdhaliwal1990@gmail.com'
+# email['subject'] = 'you won million dollar'
+# #email.set_content('I am python mater!')
+# email.set_content(html.substitute({'name' : 'parwinder'}), 'html')
+#
+# with smtplib.SMTP(host='smtp.gmail.com', port='587') as smtp:
+#     smtp.ehlo()
+#     smtp.starttls() # encryption mechanisim
+#     smtp.login('armanndhillon@gmail.com','751449Ps!pb03u2300')
+#     smtp.send_message(email)
+#     print('all is good, email is sent')
+
+#   code to fix the email password issue
+# server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+# serverEmail = "EMAILADDRESS"
+# serverPw = "QWERTY"
+# server.login(serverEmail, serverPw)
+# subject = "Rejection"
+# body = "Hi! You've been unfortunately declined access to our system."
+# message = f'Subject: {subject}\n\n{body}'
+# server.sendmail("EMAILADDRESS", doctorEmail['email'], message)
+# server.quit()
+
+#-----------------------password checker for HACK-------------------
+#
+# import requests
+# import hashlib
+# import sys
+#
+# #url = 'https://api.pwnedpasswords.com/range/' + 'password123'
+#
+# #send the hash pwd, companies use this
+#
+# #url = 'https://api.pwnedpasswords.com/range/' + 'cbfdac6008f9cab4083784cbd1874f76618d2a97'
+#
+# #give the 5 char of your pwd hash
+#
+# # url = 'https://api.pwnedpasswords.com/range/' + 'cbfda'
+# # res = requests.get(url)
+# # print(res)
+#
+# def request_api_data(query_char):
+#     url = 'https://api.pwnedpasswords.com/range/' + query_char
+#     res = requests.get(url)
+#     if res.status_code != 200:
+#         raise RuntimeError(f'Error fecthing: {res.status_code}, check the api and try again')
+#     return res
+#
+# def read_res(response):
+#     print(response.text)
+#
+# def get_password_leaks_count(hashes, hash_to_check):
+#     hashes = (line.split(':') for line in hashes.text.splitlines())
+#     for h, count in hashes:
+#         #print(h, count)
+#         if h == hash_to_check:
+#             return count # return number of leaks of password
+#     return 0 # if password does not found return 0
+#     #print(hashes)
+# def pwned_api_check(password):
+#
+#     sha1password = hashlib.sha1(password.encode('utf')).hexdigest().upper()
+#     first5_char, tail = sha1password[:5], sha1password[5:]
+#     print(first5_char, tail)
+#     response = request_api_data(first5_char)
+#     #return read_res(response)
+#     return get_password_leaks_count(response, tail)
+#
+# #pwned_api_check('123')
+#
+# def main(args):
+#     for password in args:
+#         count = pwned_api_check(password)
+#         if count:
+#             print(f'{password} was found {count} times...you should probably change the password')
+#         else:
+#             print(f'{password} was not found. Carry ON!')
+#     return 'done!'
+#
+# if __name__ == '__main__':
+#     sys.exit(main(sys.argv[1:]))
+
+#----------------Twitter---------
+
+#
+# import tweepy
+# auth = tweepy.OAuth1UserHandler('pEgJoBA0XAxxYKHKDT4MRcrCW', 'nnSaF3vOkc45FmufiGCZQ6lV8Il3a8kde0urJd797ZdisX3mhE')
+# auth.set_access_token('1052009251491770369-E9JuVtjqRKhQWnOCjOwe66mZamrcW3', 'IWYAvHjf1siydFKF5DOr1IIQXWCWoBr9bWM8TIU0l4wDw')
+#
+# api = tweepy.API(auth)
+#
+# public_tweets = api.home_timeline()
+# for tweet in public_tweets:
+#     print(tweet.text)
+#
+# api.me()  # it will display the info your self
+# def limit_handle(cursor):
+#     try:
+#         while True:
+#             yield cursor.next()
+#     except tweepy.RateLimitError:
+#         time.sleep(1000)
+#
+# #twitter has limited the access to server to avoid the crashing
+#
+# for follower in tweepy.cursor(api.get_followers): # to print the follwers name
+#     print(follower.name)
+#     if follower.name == 'aps@ghh': #if name is this then follow that user
+#         follower.follow()
+#
+# search_st = 'python'
+# numberOfTweets = 2
+# for tweet in tweepy.cursor(api.search_tweets, search_st):
+#     try:
+#         tweet.favorite()
+#         print('i liked that tweet')
+#     except tweepy.TweepyException as e:
+#         print(e.reason)
+#     except StopIteration:
+#         break
+
+
+#-----------------SMS----------------
+
+# # to send the text messages to your self
+# # Download the helper library from https://www.twilio.com/docs/python/install
+# import os
+# from twilio.rest import Client
+#
+# # Set environment variables for your credentials
+# # Read more at http://twil.io/secure
+# account_sid = "AC888a8238521502f2dfb5dc5d506aed21"
+# auth_token = "d9e19db189a1c94ee131b5cddf51d2cb"
+# client = Client(account_sid, auth_token)
+#
+# message = client.messages.create(
+#   body="Hello Kand Singh, How are you buddy",
+#   from_="+14846624066",
+#   to="+14319999021"
+#   #to="+12049633976"
+# )
+#
+# print(message.sid)
+
+#--------------------Scrapping--------------------
+
+import requests
+from bs4 import BeautifulSoup
+import pprint
+
+res = requests.get('https://news.ycombinator.com/newest')
+res2 = requests.get('https://news.ycombinator.com/newest?p=2')  # for page 2
+#print(res)
+soup = BeautifulSoup(res.text, 'html.parser') #parses the data
+#print(soup) # it will print the html (page) source info
+
+#print(soup.body) # it will print the body of page
+#print(soup.body.contents)
+#print(soup.find_all('div')) #find out all the div displayed on page
+#print(soup.find_all('a'))  # find out the a tags
+#print(soup.title) # it will print the title of page
+# print(soup.a) # it will print first a tag
+# print(soup.find('a')) # it will print the first a tag like last command
+#print(soup.find(href="https://elkue.com/nyc-slice/"))
+#print(soup.select('a'))
+
+#links = soup.select('.storylink') # it will return the class links
+
+votes = soup.select('.score')
+# print(votes[1])
+# print(votes[1].get('id'))
+# print(votes[1].attrs)
+
+links = soup.select('subline')
+print(links)
+
+subtext = soup.select('.subtext')
+print(subtext)
+
+def sort_stories_by_vote(hnlist):
+    return sorted(hnlist, key= lambda k:k['votes'], reverse=True)
+
+def create_custom_hn(links, subext):
+    hn = []
+    for idx, item in enumerate(links):
+        title = item.getText()
+        href = item.get('href', None)
+        vote = subtext[idx].select('.score')
+        if len(vote):
+            points = int(votes[0].getText().replace(' ponits', ''))
+            if points>99:
+                hn.append({'title': title, 'link': href, 'votes' : points})
+    return sort_stories_by_vote(hn)
+
+pprint.pprint(create_custom_hn(links, subtext))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

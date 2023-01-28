@@ -273,5 +273,42 @@ from functools import reduce
 # message_friends(user1)
 
 
-def do_stuff(num):
-    return num + 5
+# def do_stuff(num):
+#     return num + 5
+
+#------------------combine the two pdf's -----------------
+
+import pypdf
+import sys
+
+# inputs = sys.argv[1:]
+# def pdf_combiner(pdf_list):
+#       merger = pypdf.PdfMerger()
+#       for pdf in pdf_list:
+#             print(pdf) # to print the pdf files
+#             merger.append(pdf)
+#       merger.write('combined.pdf')
+#
+# pdf_combiner(inputs)
+
+
+#------watermark--------------
+template = pypdf.PdfReader(open('combined.pdf', 'rb')) # open read binary of pdf
+watermark = pypdf.PdfReader(open('wtr.pdf', 'rb')) # open read binary of watermark pdf
+print(len(template.pages))
+print(len(watermark.pages))
+
+output = pypdf.PdfWriter()
+
+#for i in range(template.pages):
+#for i in len(template.pages):
+#for i in range(template.getNumPages()):
+for i in range(len(template.pages)):
+      page = template.getPage(i)
+      page.mergePage(watermark.getPage(0))
+      output.addPage(page)
+
+with open('watermarked_output.pdf', 'wb') as file:
+      output.write(file)
+
+
